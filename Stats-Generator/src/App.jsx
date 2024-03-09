@@ -4,6 +4,7 @@ import './Stats.jsx'
 import Stats from './Stats.jsx'
 
 function App() {
+  const [races, setRace] = useState("aarakocra")
   const [classes, setClass] = useState("artificer");
   const [levels, setLevel] = useState("1");
 
@@ -11,6 +12,37 @@ function App() {
     <>
       <div>
       <h1>Table Top RPG Stats Generator</h1>
+      <label htmlFor="race">Select a Race:</label>
+      <select name="race" id="race" value={races} onChange={(e) => setRace(e.target.value)}>
+        <option value="aarakocra">Aarakocra</option>
+        <option value="aasimar">Aasimar</option>
+        <option value="bugbear">Bugbear</option>
+        <option value="changeling">Changeling</option>
+        <option value="dragonborn">Dragonborn</option>
+        <option value="dwarf">Dwarf</option>
+        <option value="elfdrow">Elf (Drow)</option>
+        <option value="elfhigh">Elf (High)</option>
+        <option value="elfwood">Elf (Wood)</option>
+        <option value="genasiair">Genasi (Air)</option>
+        <option value="genasiearth">Genasi (Earth)</option>
+        <option value="genasifire">Genasi (Fire)</option>
+        <option value="genasiwater">Genasi (Water)</option>
+        <option value="gnomedeep">Gnome (Deep)</option>
+        <option value="gnomeforest">Gnome (Forest)</option>
+        <option value="gnomerock">Gnome (Rock)</option>
+        <option value="goblin">Goblin</option>
+        <option value="halfelf">Half-Elf</option>
+        <option value="halforc">Half-Orc</option>
+        <option value="halfling">Halfling</option>
+        <option value="human">Human</option>
+        <option value="kobold">Kobold</option>
+        <option value="orc">Orc</option>
+        <option value="tabaxi">Tabaxi</option>
+        <option value="tiefling">Tiefling</option>
+        <option value="triton">Triton</option>
+        <option value="warforged">Warforged</option>
+      </select>
+      <br></br>
       <label htmlFor="class">Select a Class:</label>
       <select name="class" id="class" value={classes} onChange={(e) => setClass(e.target.value)}>
         <option value="artificer">Artificer</option>
@@ -51,7 +83,7 @@ function App() {
         <option value="19">19</option>
         <option value="20">20</option>
       </select>
-      <Stats></Stats>
+      <Stats raceValue={races} classValue={classes} levelValue={levels}></Stats>
       </div>
     </>
   )
