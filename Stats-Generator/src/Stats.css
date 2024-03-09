@@ -1,0 +1,14 @@
+table{
+    border: 1px solid white;
+    color: white;
+}
+th{
+    border: 1px solid white;
+    padding: 10px;
+}
+td{
+    border: 1px solid white;
+    padding: 25px;
+    text-shadow: 1px 1px red;
+    color: gold;
+}

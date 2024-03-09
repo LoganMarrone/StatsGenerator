@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import './Stats.jsx'
+import Stats from './Stats.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -24,6 +26,7 @@ function App() {
         <option value="warlock">Warlock</option>
         <option value="wizard">Wizard</option>
       </select>
+      <Stats></Stats>
       </div>
     </>
   )
