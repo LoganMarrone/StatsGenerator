@@ -9,6 +9,12 @@ function Stats({raceValue, classValue, levelValue}){
         const [wisdom, setWisdom] = useState(null);
         const [charisma, setCharisma] = useState(null);
         const [health, setHealth] = useState(null);
+        const [strmod, setStrengthmod] = useState(null);
+        const [dexmod, setDexteritymod] = useState(null);
+        const [constmod, setConstitutionmod] = useState(null);
+        const [intmod, setIntelligencemod] = useState(null);
+        const [wismod, setWisdommod] = useState(null);
+        const [chrmod, setCharismamod] = useState(null);
 
     const clearStats = () => {
         setStrength(null);
@@ -18,6 +24,12 @@ function Stats({raceValue, classValue, levelValue}){
         setWisdom(null);
         setCharisma(null);
         setHealth(null);
+        setStrengthmod(null);
+        setDexteritymod(null);
+        setConstitutionmod(null);
+        setIntelligencemod(null);
+        setWisdommod(null);
+        setCharismamod(null);
     }
     const roll = () => {
         const rolls = [];
@@ -33,11 +45,44 @@ function Stats({raceValue, classValue, levelValue}){
         return total;
     }
     const classStats = () => {
-
+        const detStrength = sort(strength)
     }
-    const healthset = () => {
-        const rollHealth = healthroll();
-        setHealth([rollHealth]);
+    const sort = (value) => {
+        let modifier = 0;
+        if (value === 1) {
+        modifier = "-5";
+        } 
+        else if (value >= 2 && value <= 3) {
+        modifier = "-4";
+        } 
+        else if (value >= 4 && value <= 5) {
+        modifier = "-3";
+        } 
+        else if (value >= 6 && value <= 7) {
+        modifier = "-2";
+        } 
+        else if (value >= 8 && value <= 9) {
+        modifier = "-1";
+        } 
+        else if (value >= 10 && value <= 11) {
+        modifier = "+0";
+        } 
+        else if (value >= 12 && value <= 13) {
+        modifier = "+1";
+        } 
+        else if (value >= 14 && value <= 15) {
+        modifier = "+2";
+        } 
+        else if (value >= 16 && value <= 17) {
+        modifier = "+3";
+        } 
+        else if (value >= 18 && value <= 19) {
+        modifier = "+4";
+        } 
+        else if (value === 20) {
+        modifier = "+5";
+        }
+        return modifier;
     }
     const rollStats = () => {
         clearStats();
@@ -47,16 +92,29 @@ function Stats({raceValue, classValue, levelValue}){
         const rollIntelligence = roll();
         const rollWisdom = roll();
         const rollCharisma = roll();
+        const rollHealth = healthroll(rollConstitution);
+        const detStrength = sort(rollStrength);
+        const detDexterity = sort(rollDexterity);
+        const detConstitution = sort(rollConstitution);
+        const detIntelligence = sort(rollIntelligence);
+        const detWisdom = sort(rollWisdom);
+        const detCharisma = sort(rollCharisma);
         setStrength([rollStrength]);
         setDexterity([rollDexterity]);
         setConstitution([rollConstitution]);
         setIntelligence([rollIntelligence]);
         setWisdom([rollWisdom]);
         setCharisma([rollCharisma]);
+        setHealth([rollHealth]);
+        setStrengthmod([detStrength]);
+        setDexteritymod([detDexterity]);
+        setConstitutionmod([detConstitution]);
+        setIntelligencemod([detIntelligence]);
+        setWisdommod([detWisdom]);
+        setCharismamod([detCharisma]);
         classStats();
-        healthset();
     }
-    const healthroll = () => {
+    const healthroll = (constitution) => {
         const charclass = classValue;
         let max = 0;
         if (charclass == "artificer" || charclass == "bard" || charclass == "cleric" || charclass == "druid" || charclass == "monk" || charclass == "rogue" || charclass == "warlock")
@@ -143,6 +201,17 @@ function Stats({raceValue, classValue, levelValue}){
                 <td>{intelligence}</td>
                 <td>{wisdom}</td>
                 <td>{charisma}</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td class="blank"></td>
+                    <td>{strmod}</td>
+                    <td>{dexmod}</td>
+                    <td>{constmod}</td>
+                    <td>{intmod}</td>
+                    <td>{wismod}</td>
+                    <td>{chrmod}</td>
                 </tr>
             </tbody>
         </table>
