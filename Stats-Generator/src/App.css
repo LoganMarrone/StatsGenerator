@@ -17,11 +17,20 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
-
-.card {
-  padding: 2em;
+h1{
+  color: white;
+  text-shadow: -5px 5px black;
+  vertical-align: top;
 }
 
-.read-the-docs {
-  color: #888;
+label{
+  align-items: center;
+  color: white;
+  font-style: bold;
+  text-shadow: 1px 1px black;
+}
+select{
+  color: white;
+  text-shadow: 1px 0 5px #ffde21;
+  width: 100px;
 }
