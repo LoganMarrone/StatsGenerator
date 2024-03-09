@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
@@ -9,25 +7,24 @@ function App() {
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h1>Table Top RPG Stats Generator</h1>
+      <label for="class">Select a Class:</label>
+      <select name="class" id="class">
+        <option value="artificer">Artificer</option>
+        <option value="barbarian">Barbarian</option>
+        <option value="bard">Bard</option>
+        <option value="cleric">Cleric</option>
+        <option value="druid">Druid</option>
+        <option value="fighter">Fighter</option>
+        <option value="monk">Monk</option>
+        <option value="paladin">Paladin</option>
+        <option value="ranger">Ranger</option>
+        <option value="rogue">Rogue</option>
+        <option value="sorcerer">Sorcerer</option>
+        <option value="warlock">Warlock</option>
+        <option value="wizard">Wizard</option>
+      </select>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
