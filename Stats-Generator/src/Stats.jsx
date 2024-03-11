@@ -1,7 +1,7 @@
 import './Stats.css'
 import React, { useState } from 'react';
 
-function Stats({raceValue, classValue, levelValue}){
+function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
     const [strength, setStrength] = useState(null);
         const [dexterity, setDexterity] = useState(null);
         const [constitution, setConstitution] = useState(null);
@@ -15,7 +15,9 @@ function Stats({raceValue, classValue, levelValue}){
         const [intmod, setIntelligencemod] = useState(null);
         const [wismod, setWisdommod] = useState(null);
         const [chrmod, setCharismamod] = useState(null);
-
+        const [mod1, setMod1] = useState(null);
+        const [mod2, setMod2] = useState(null);
+        const [temp, setTemp] = useState(null);
     const clearStats = () => {
         setStrength(null);
         setDexterity(null);
@@ -93,12 +95,6 @@ function Stats({raceValue, classValue, levelValue}){
         const rollWisdom = roll();
         const rollCharisma = roll();
         const rollHealth = healthroll(rollConstitution);
-        const detStrength = sort(rollStrength);
-        const detDexterity = sort(rollDexterity);
-        const detConstitution = sort(rollConstitution);
-        const detIntelligence = sort(rollIntelligence);
-        const detWisdom = sort(rollWisdom);
-        const detCharisma = sort(rollCharisma);
         setStrength([rollStrength]);
         setDexterity([rollDexterity]);
         setConstitution([rollConstitution]);
@@ -106,14 +102,121 @@ function Stats({raceValue, classValue, levelValue}){
         setWisdom([rollWisdom]);
         setCharisma([rollCharisma]);
         setHealth([rollHealth]);
+        classStats();
+        checkStats(rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma);
+    }
+    const checkStats = (rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma) => {
+        const detStrength = sort(rollStrength);
+        const detDexterity = sort(rollDexterity);
+        const detConstitution = sort(rollConstitution);
+        const detIntelligence = sort(rollIntelligence);
+        const detWisdom = sort(rollWisdom);
+        const detCharisma = sort(rollCharisma);
         setStrengthmod([detStrength]);
         setDexteritymod([detDexterity]);
         setConstitutionmod([detConstitution]);
         setIntelligencemod([detIntelligence]);
         setWisdommod([detWisdom]);
         setCharismamod([detCharisma]);
-        classStats();
     }
+ const swap = () => {
+    if (mod1 != mod2){
+    let tempMod = mod1;
+    setMod1(mod2);
+    setMod2(tempMod);
+    let tempValue;
+    let detStr;
+    if (tempMod != null && mod1 != null && mod2 != null){
+    switch (mod1) {
+        case 'strength':
+            tempValue = strength;
+            setStrength(getValue(mod2));
+            setValue(mod2, tempValue);
+            detStr = sort(tempValue);
+            setStrengthmod([detStr]);
+            break;
+        case 'dexterity':
+            tempValue = dexterity;
+            setDexterity(getValue(mod2));
+            setValue(mod2, tempValue);
+            detStr = sort(tempValue);
+            setDexteritymod([detStr]);
+            break;
+        case 'constitution':
+            tempValue = constitution;
+            setConstitution(getValue(mod2));
+            setValue(mod2, tempValue);
+            detStr = sort(tempValue);
+            setConstitutionmod([detStr]);
+            break;
+        case 'intelligence':
+            tempValue = intelligence;
+            setIntelligence(getValue(mod2));
+            setValue(mod2, tempValue);
+            checkStats();
+            break;
+        case 'wisdom':
+            tempValue = wisdom;
+            setWisdom(getValue(mod2));
+            setValue(mod2, tempValue);
+            checkStats();
+            break;
+        case 'charisma':
+            tempValue = charisma;
+            setCharisma(getValue(mod2));
+            setValue(mod2, tempValue);
+            checkStats();
+            break;
+        default:
+            break;
+    }
+}
+    }
+}
+
+const getValue = (modifier) => {
+    switch (modifier) {
+        case 'strength':
+            return strength;
+        case 'dexterity':
+            return dexterity;
+        case 'constitution':
+            return constitution;
+        case 'intelligence':
+            return intelligence;
+        case 'wisdom':
+            return wisdom;
+        case 'charisma':
+            return charisma;
+        default:
+            return null;
+    }
+}
+
+const setValue = (modifier, value) => {
+    switch (modifier) {
+        case 'strength':
+            setStrength(value);
+            break;
+        case 'dexterity':
+            setDexterity(value);
+            break;
+        case 'constitution':
+            setConstitution(value);
+            break;
+        case 'intelligence':
+            setIntelligence(value);
+            break;
+        case 'wisdom':
+            setWisdom(value);
+            break;
+        case 'charisma':
+            setCharisma(value);
+            break;
+        default:
+            break;
+    }
+}
     const healthroll = (constitution) => {
         const charclass = classValue;
         let max = 0;
@@ -176,6 +279,33 @@ function Stats({raceValue, classValue, levelValue}){
                 totalhealth += Math.floor(Math.random() * max) + 1 + conmod;
             }
         }
+        const charclass2 = class2Value;
+        let max2 = 0;
+        if (charclass2 == "artificer" || charclass2 == "bard" || charclass2 == "cleric" || charclass2 == "druid" || charclass2 == "monk" || charclass2 == "rogue" || charclass2 == "warlock")
+        {
+            max2 = 8;
+        }
+        else if (charclass2 == "barbarian")
+        {
+            max2 = 12;
+        }
+        else if (charclass2 == "fighter" || charclass2 == "paladin" || charclass2 == "ranger")
+        {
+            max2 = 10;
+        }
+        else if (charclass2 == "sorcerer" || charclass2 == "wizard")
+        {
+            max2 = 6;
+        }
+        const level2 = parseInt(level2Value)
+        if (level2 != 0){
+        totalhealth += max2 + conmod; //for 1st level
+            if (level2 > 1){
+            for (let index = 0; index < level2; index++){
+                totalhealth += Math.floor(Math.random() * max2) + 1 + conmod;
+            }
+        }
+    }
         return totalhealth;
     }
     return(
@@ -205,7 +335,7 @@ function Stats({raceValue, classValue, levelValue}){
             </tbody>
             <tbody>
                 <tr>
-                    <td class="blank"></td>
+                    <td className="blank"></td>
                     <td>{strmod}</td>
                     <td>{dexmod}</td>
                     <td>{constmod}</td>
@@ -215,6 +345,26 @@ function Stats({raceValue, classValue, levelValue}){
                 </tr>
             </tbody>
         </table>
+        <br></br>
+        <button onClick={swap}>Swap these Stats:</button>
+        <label htmlFor="mod1">Select Modifier 1:</label>
+      <select name="mod1" id="mod1" value={mod1} onChange={(e) => setMod1(e.target.value)}>
+        <option value="strength">Strength</option>
+        <option value="dexterity">Dexterity</option>
+        <option value="constitution">Constitution</option>
+        <option value="intelligence">Intelligence</option>
+        <option value="wisdom">Wisdom</option>
+        <option value="charisma">Charisma</option>
+      </select>
+      <label htmlFor="mod2">Select Modifier 2:</label>
+      <select name="mod2" id="mod2" value={mod2} onChange={(e) => setMod2(e.target.value)}>
+        <option value="strength">Strength</option>
+        <option value="dexterity">Dexterity</option>
+        <option value="constitution">Constitution</option>
+        <option value="intelligence">Intelligence</option>
+        <option value="wisdom">Wisdom</option>
+        <option value="charisma">Charisma</option>
+      </select>
         </div>
     )
 }

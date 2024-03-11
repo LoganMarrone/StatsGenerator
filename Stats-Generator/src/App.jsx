@@ -7,7 +7,8 @@ function App() {
   const [races, setRace] = useState("aarakocra")
   const [classes, setClass] = useState("artificer");
   const [levels, setLevel] = useState("1");
-
+  const [classes2, setClass2] = useState("none");
+  const [levels2, setLevel2] = useState("0");
   return (
     <>
       <div>
@@ -43,8 +44,26 @@ function App() {
         <option value="warforged">Warforged</option>
       </select>
       <br></br>
+      <div>
       <label htmlFor="class">Select a Class:</label>
       <select name="class" id="class" value={classes} onChange={(e) => setClass(e.target.value)}>
+        <option value="artificer">Artificer</option>
+        <option value="barbarian">Barbarian</option>
+        <option value="bard">Bard</option>
+        <option value="cleric">Cleric</option>
+        <option value="druid">Druid</option>
+        <option value="fighter">Fighter</option>
+        <option value="monk">Monk</option>
+        <option value="paladin">Paladin</option>
+        <option value="ranger">Ranger</option>
+        <option value="rogue">Rogue</option>
+        <option value="sorcerer">Sorcerer</option>
+        <option value="warlock">Warlock</option>
+        <option value="wizard">Wizard</option>
+      </select>
+      <label htmlFor="class2">Select a Class:</label>
+      <select name="class2" id="class2" value={classes2} onChange={(e) => setClass2(e.target.value)}>
+        <option value="none">None</option>
         <option value="artificer">Artificer</option>
         <option value="barbarian">Barbarian</option>
         <option value="bard">Bard</option>
@@ -83,7 +102,32 @@ function App() {
         <option value="19">19</option>
         <option value="20">20</option>
       </select>
-      <Stats raceValue={races} classValue={classes} levelValue={levels}></Stats>
+      <label htmlFor="level2">Select a Level:</label>
+      <select name="level2" id="level2" value={levels2} onChange={(e) => setLevel2(e.target.value)}>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+      </select>
+      </div>
+      <Stats raceValue={races} classValue={classes} class2Value={classes2} levelValue={levels} level2Value={levels2}></Stats>
       </div>
     </>
   )

@@ -17,3 +17,8 @@ td{
 .blank{
     border: 0px solid;
 }
+p{
+    color: red;
+    font-weight: bold;
+    text-shadow: -2px 2px black;
+}
