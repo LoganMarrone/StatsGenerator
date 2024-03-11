@@ -125,47 +125,49 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
     setMod1(mod2);
     setMod2(tempMod);
     let tempValue;
-    let detStr;
+    const str = strength;
+    const dex = dexterity;
+    const con = constitution;
+    const int = intelligence;
+    const wis = wisdom;
+    const chr = charisma;
     if (tempMod != null && mod1 != null && mod2 != null){
     switch (mod1) {
         case 'strength':
             tempValue = strength;
             setStrength(getValue(mod2));
             setValue(mod2, tempValue);
-            detStr = sort(tempValue);
-            setStrengthmod([detStr]);
+            setStrengthmod(sort(getValue(mod2)));
             break;
         case 'dexterity':
             tempValue = dexterity;
             setDexterity(getValue(mod2));
             setValue(mod2, tempValue);
-            detStr = sort(tempValue);
-            setDexteritymod([detStr]);
+            setDexteritymod(sort(getValue(mod2)));
             break;
         case 'constitution':
             tempValue = constitution;
             setConstitution(getValue(mod2));
             setValue(mod2, tempValue);
-            detStr = sort(tempValue);
-            setConstitutionmod([detStr]);
+            setConstitutionmod(sort(getValue(mod2)));
             break;
         case 'intelligence':
             tempValue = intelligence;
             setIntelligence(getValue(mod2));
             setValue(mod2, tempValue);
-            checkStats();
+            setIntelligencemod(sort(getValue(mod2)));
             break;
         case 'wisdom':
             tempValue = wisdom;
             setWisdom(getValue(mod2));
             setValue(mod2, tempValue);
-            checkStats();
+            setWisdommod(sort(getValue(mod2)));
             break;
         case 'charisma':
             tempValue = charisma;
             setCharisma(getValue(mod2));
             setValue(mod2, tempValue);
-            checkStats();
+            setCharismamod(sort(getValue(mod2)));
             break;
         default:
             break;
@@ -197,21 +199,27 @@ const setValue = (modifier, value) => {
     switch (modifier) {
         case 'strength':
             setStrength(value);
+            setStrengthmod(sort(value));
             break;
         case 'dexterity':
             setDexterity(value);
+            setDexteritymod(sort(value));
             break;
         case 'constitution':
             setConstitution(value);
+            setConstitutionmod(sort(value));
             break;
         case 'intelligence':
             setIntelligence(value);
+            setIntelligencemod(sort(value));
             break;
         case 'wisdom':
             setWisdom(value);
+            setWisdommod(sort(value));
             break;
         case 'charisma':
             setCharisma(value);
+            setCharismamod(sort(value));
             break;
         default:
             break;
