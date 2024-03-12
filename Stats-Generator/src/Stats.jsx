@@ -1,7 +1,7 @@
 import './Stats.css'
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
+function Stats({raceValue, classValue, levelValue, class2Value, level2Value, modValue}){
     const [strength, setStrength] = useState(null);
         const [dexterity, setDexterity] = useState(null);
         const [constitution, setConstitution] = useState(null);
@@ -33,6 +33,7 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
         setWisdommod(null);
         setCharismamod(null);
     }
+
     const roll = () => {
         const rolls = [];
         for (let index = 0; index < 6; index++){
@@ -46,9 +47,231 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
         }
         return total;
     }
-    const classStats = () => {
-        const detStrength = sort(strength)
+
+    const raceStats = (rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma) => {
+        const racial = raceValue;
+        let racemod1;
+        let racemod2;
+        let racemod3;
+        let racemod4;
+        let racemod5;
+        let racemod6;
+        let racemod7 = modValue;
+        switch (racial){
+            case 'aarakocra':
+                racemod1 = rollDexterity + 2;
+                racemod2 = rollWisdom + 1;
+                setDexterity(racemod1);
+                setWisdom(racemod2);
+                setDexteritymod(sort(racemod1));
+                setWisdommod(sort(racemod2));
+                break;
+            case 'aasimar':
+                racemod1 = rollCharisma + 2;
+                setCharisma(racemod1);
+                setCharismamod(sort(racemod1));
+                break;
+            case 'bugbear':
+                racemod1 = rollStrength + 2;
+                racemod2 = rollDexterity + 1;
+                setStrength(racemod1);
+                setDexterity(racemod2);
+                setStrengthmod(sort(racemod1));
+                setDexteritymod(sort(racemod2));
+                break;
+            case 'changeling':
+                racemod1 = rollStrength + 2;
+                racemod7 = rollDexterity + 1;
+                setStrength(racemod1);
+                setDexterity(racemod2);
+                setStrengthmod(sort(racemod1));
+                setDexteritymod(sort(racemod2));
+                break;
+            case 'dragonborn':
+                racemod1 = rollStrength + 2;
+                racemod2 = rollCharisma + 1;
+                setStrength(racemod1);
+                setCharisma(racemod2);
+                setStrengthmod(sort(racemod1));
+                setCharismamod(sort(racemod2));
+                break;
+            case 'dwarf':
+                racemod1 = rollConstitution + 2;
+                setConstitution(racemod1);
+                setConstitutionmod(sort(racemod1));
+                break;
+            case 'elfdrow':
+                racemod1 = rollDexterity + 2;
+                racemod2 = rollCharisma + 1;
+                setDexterity(racemod1);
+                setCharisma(racemod2);
+                setDexteritymod(sort(racemod1));
+                setCharismamod(sort(racemod2));
+                break;
+            case 'elfhigh':
+                racemod1 = rollDexterity + 2;
+                racemod2 = rollIntelligence + 1;
+                setDexterity(racemod1);
+                setIntelligence(racemod2);
+                setDexteritymod(sort(racemod1));
+                setIntelligencemod(sort(racemod2));
+                break;
+            case 'elfwood':
+                racemod1 = rollDexterity + 2;
+                racemod2 = rollWisdom + 1;
+                setDexterity(racemod1);
+                setWisdom(racemod2);
+                setDexteritymod(sort(racemod1));
+                setWisdommod(sort(racemod2));
+                break;
+            case 'genasiair':
+                racemod1 = rollConstitution + 2;
+                racemod2 = rollDexterity + 1;
+                setConstitution(racemod1);
+                setDexterity(racemod2);
+                setConstitutionmod(sort(racemod1));
+                setDexteritymod(sort(racemod2));
+                break;
+            case 'genasiearth':
+                racemod1 = rollConstitution + 2;
+                racemod2 = rollStrength + 1;
+                setConstitution(racemod1);
+                setStrength(racemod2);
+                setConstitutionmod(sort(racemod1));
+                setStrengthmod(sort(racemod2));
+                break;
+            case 'genasifire':
+                racemod1 = rollConstitution + 2;
+                racemod2 = rollIntelligence + 1;
+                setConstitution(racemod1);
+                setIntelligence(racemod2);
+                setConstitutionmod(sort(racemod1));
+                setIntelligencemod(sort(racemod2));
+                break;
+            case 'genasiwater':
+                racemod1 = rollConstitution + 2;
+                racemod2 = rollWisdom + 1;
+                setConstitution(racemod1);
+                setWisdom(racemod2);
+                setConstitutionmod(sort(racemod1));
+                setWisdommod(sort(racemod2));
+                break;
+            case 'gnomedeep':
+                racemod1 = rollIntelligence + 2;
+                racemod2 = rollDexterity + 1;
+                setIntelligence(racemod1);
+                setDexterity(racemod2);
+                setIntelligencemod(sort(racemod1));
+                setDexteritymod(sort(racemod2));
+                break;
+            case 'gnomeforest':
+                racemod1 = rollIntelligence + 2;
+                racemod2 = rollDexterity + 1;
+                setIntelligence(racemod1);
+                setDexterity(racemod2);
+                setIntelligencemod(sort(racemod1));
+                setDexteritymod(sort(racemod2));
+                break;
+            case 'gnomerock':
+                racemod1 = rollIntelligence + 2;
+                racemod2 = rollConstitution + 1;
+                setIntelligence(racemod1);
+                setConstitution(racemod2);
+                setIntelligencemod(sort(racemod1));
+                setConstitutionmod(sort(racemod2));
+                break;
+            case 'goblin':
+                racemod1 = rollDexterity + 2;
+                racemod2 = rollConstitution + 1;
+                setDexterity(racemod1);
+                setConstitution(racemod2);
+                setDexteritymod(sort(racemod1));
+                setConstitutionmod(sort(racemod2));
+                break;
+            case 'halfelf':
+
+                break;
+            case 'halforc':
+                racemod1 = rollStrength + 2;
+                racemod2 = rollConstitution + 1;
+                setStrength(racemod1);
+                setConstitution(racemod2);
+                setStrengthmod(sort(racemod1));
+                setConstitutionmod(sort(racemod2));
+                break;
+            case 'halfling':
+                racemod1 = rollDexterity + 2;
+                setDexterity(racemod1);
+                setDexteritymod(sort(racemod1));
+                break;
+            case 'human':
+                racemod1 = rollStrength + 1;
+                racemod2 = rollDexterity + 1;
+                racemod3 = rollConstitution + 1;
+                racemod4 = rollIntelligence + 1;
+                racemod5 = rollWisdom + 1;
+                racemod6 = rollCharisma + 1;
+                setStrength(racemod1);
+                setDexterity(racemod2);
+                setConstitution(racemod3);
+                setIntelligence(racemod4);
+                setWisdom(racemod5);
+                setCharisma(racemod6);
+                setStrengthmod(sort(racemod1));
+                setDexteritymod(sort(racemod2));
+                setConstitutionmod(sort(racemod3));
+                setIntelligencemod(sort(racemod4));
+                setWisdommod(sort(racemod5));
+                setCharismamod(sort(racemod6));
+                break;
+            case 'kobold':
+                racemod1 = rollDexterity + 2;
+                setDexterity(racemod1);
+                setDexteritymod(sort(racemod1));
+                break;
+            case 'orc':
+                racemod1 = rollStrength + 2;
+                racemod2 = rollConstitution + 1;
+                setStrength(racemod1);
+                setConstitution(racemod2);
+                setStrengthmod(sort(racemod1));
+                setConstitutionmod(sort(racemod2));
+                break;
+            case 'tabaxi':
+                racemod1 = rollDexterity + 2;
+                racemod2 = rollCharisma + 1;
+                setDexterity(racemod1);
+                setCharisma(racemod2);
+                setDexteritymod(sort(racemod1));
+                setCharismamod(sort(racemod2));
+                break;
+            case 'tiefling':
+                racemod1 = rollCharisma + 2;
+                racemod2 = rollIntelligence + 1;
+                setCharisma(racemod1);
+                setIntelligence(racemod2);
+                setCharismamod(sort(racemod1));
+                setIntelligencemod(sort(racemod2));
+                break;
+            case 'triton':
+                racemod1 = rollStrength + 1;
+                racemod2 = rollConstitution + 1;
+                racemod3 = rollCharisma + 1;
+                setStrength(racemod1);
+                setConstitution(racemod2);
+                setCharisma(racemod3);
+                setStrengthmod(sort(racemod1));
+                setConstitutionmod(sort(racemod2));
+                setCharismamod(sort(racemod3));
+                break;
+            case 'warforged':
+                select();
+                break;
+            default:
+                break;
+        }
     }
+
     const sort = (value) => {
         let modifier = 0;
         if (value === 1) {
@@ -86,6 +309,7 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
         }
         return modifier;
     }
+
     const rollStats = () => {
         clearStats();
         const rollStrength = roll();
@@ -102,9 +326,10 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
         setWisdom([rollWisdom]);
         setCharisma([rollCharisma]);
         setHealth([rollHealth]);
-        classStats();
+        raceStats(rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma);
         checkStats(rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma);
     }
+
     const checkStats = (rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma) => {
         const detStrength = sort(rollStrength);
         const detDexterity = sort(rollDexterity);
@@ -119,18 +344,13 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
         setWisdommod([detWisdom]);
         setCharismamod([detCharisma]);
     }
- const swap = () => {
+
+    const swap = () => {
     if (mod1 != mod2){
     let tempMod = mod1;
     setMod1(mod2);
     setMod2(tempMod);
     let tempValue;
-    const str = strength;
-    const dex = dexterity;
-    const con = constitution;
-    const int = intelligence;
-    const wis = wisdom;
-    const chr = charisma;
     if (tempMod != null && mod1 != null && mod2 != null){
     switch (mod1) {
         case 'strength':
@@ -225,6 +445,7 @@ const setValue = (modifier, value) => {
             break;
     }
 }
+
     const healthroll = (constitution) => {
         const charclass = classValue;
         let max = 0;
@@ -316,6 +537,7 @@ const setValue = (modifier, value) => {
     }
         return totalhealth;
     }
+
     return(
         <div>
         <br></br>
