@@ -1,6 +1,8 @@
 # StatsGenerator
 Simple Website that can be utilized for TTRPG games
 
+Hours Worked: 10 hours
+
 Utilizing the React framework, this website is an easy way for Players and Campaign Runners to gain stats and health which is a hefty task.
 
 This task requires a lot of dice rolls that can easily be done by my website. Including Health, Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma.
