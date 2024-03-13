@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import './Stats.css'
 import { useState } from 'react';
 
-function Stats({raceValue, classValue, levelValue, class2Value, level2Value, modValue}){
+function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
     const [strength, setStrength] = useState(null);
         const [dexterity, setDexterity] = useState(null);
         const [constitution, setConstitution] = useState(null);
@@ -17,7 +18,6 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value, mod
         const [chrmod, setCharismamod] = useState(null);
         const [mod1, setMod1] = useState(null);
         const [mod2, setMod2] = useState(null);
-        const [temp, setTemp] = useState(null);
     const clearStats = () => {
         setStrength(null);
         setDexterity(null);
@@ -56,7 +56,6 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value, mod
         let racemod4;
         let racemod5;
         let racemod6;
-        let racemod7 = modValue;
         switch (racial){
             case 'aarakocra':
                 racemod1 = rollDexterity + 2;
@@ -80,12 +79,38 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value, mod
                 setDexteritymod(sort(racemod2));
                 break;
             case 'changeling':
-                racemod1 = rollStrength + 2;
-                racemod7 = rollDexterity + 1;
-                setStrength(racemod1);
-                setDexterity(racemod2);
-                setStrengthmod(sort(racemod1));
-                setDexteritymod(sort(racemod2));
+                racemod1 = rollCharisma + 2;
+                setCharisma(racemod1);
+                setCharismamod(sort(racemod1));
+                    switch (mod1) {
+                        case 'strength':
+                            racemod2 = rollStrength + 1;
+                            setStrength(racemod2);
+                            setStrengthmod(sort(racemod2));
+                            break;
+                        case 'dexterity':
+                            racemod2 = rollDexterity + 1;
+                            setDexterity(racemod2);
+                            setDexteritymod(sort(racemod2));
+                            break;
+                        case 'constitution':
+                            racemod2 = rollConstitution + 1;
+                            setConstitution(racemod2);
+                            setConstitutionmod(sort(racemod2));
+                            break;
+                        case 'intelligence':
+                            racemod2 = rollIntelligence + 1;
+                            setIntelligence(racemod2);
+                            setIntelligencemod(sort(racemod2));
+                            break;
+                        case 'wisdom':
+                            racemod2 = rollWisdom + 1;
+                            setWisdom(racemod2);
+                            setWisdommod(sort(racemod2));
+                            break;
+                        default:
+                                break;
+    }
                 break;
             case 'dragonborn':
                 racemod1 = rollStrength + 2;
@@ -189,7 +214,67 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value, mod
                 setConstitutionmod(sort(racemod2));
                 break;
             case 'halfelf':
-
+                racemod1 = rollCharisma + 2;
+                setCharisma(racemod1);
+                setCharismamod(sort(racemod1));
+                    switch (mod1) {
+                        case 'strength':
+                            racemod2 = rollStrength + 1;
+                            setStrength(racemod2);
+                            setStrengthmod(sort(racemod2));
+                            break;
+                        case 'dexterity':
+                            racemod2 = rollDexterity + 1;
+                            setDexterity(racemod2);
+                            setDexteritymod(sort(racemod2));
+                            break;
+                        case 'constitution':
+                            racemod2 = rollConstitution + 1;
+                            setConstitution(racemod2);
+                            setConstitutionmod(sort(racemod2));
+                            break;
+                        case 'intelligence':
+                            racemod2 = rollIntelligence + 1;
+                            setIntelligence(racemod2);
+                            setIntelligencemod(sort(racemod2));
+                            break;
+                        case 'wisdom':
+                            racemod2 = rollWisdom + 1;
+                            setWisdom(racemod2);
+                            setWisdommod(sort(racemod2));
+                            break;
+                        default:
+                                break;
+    }
+                        switch (mod2) {
+                        case 'strength':
+                            racemod2 = rollStrength + 1;
+                            setStrength(racemod2);
+                            setStrengthmod(sort(racemod2));
+                            break;
+                        case 'dexterity':
+                            racemod2 = rollDexterity + 1;
+                            setDexterity(racemod2);
+                            setDexteritymod(sort(racemod2));
+                            break;
+                        case 'constitution':
+                            racemod2 = rollConstitution + 1;
+                            setConstitution(racemod2);
+                            setConstitutionmod(sort(racemod2));
+                            break;
+                        case 'intelligence':
+                            racemod2 = rollIntelligence + 1;
+                            setIntelligence(racemod2);
+                            setIntelligencemod(sort(racemod2));
+                            break;
+                        case 'wisdom':
+                            racemod2 = rollWisdom + 1;
+                            setWisdom(racemod2);
+                            setWisdommod(sort(racemod2));
+                            break;
+                        default:
+                                break;
+    }
                 break;
             case 'halforc':
                 racemod1 = rollStrength + 2;
@@ -265,7 +350,38 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value, mod
                 setCharismamod(sort(racemod3));
                 break;
             case 'warforged':
-                select();
+                racemod1 = rollConstitution + 2;
+                setConstitution(racemod1);
+                setConstitutionmod(sort(racemod1));
+                    switch (mod1) {
+                        case 'strength':
+                            racemod2 = rollStrength + 1;
+                            setStrength(racemod2);
+                            setStrengthmod(sort(racemod2));
+                            break;
+                        case 'dexterity':
+                            racemod2 = rollDexterity + 1;
+                            setDexterity(racemod2);
+                            setDexteritymod(sort(racemod2));
+                            break;
+                        case 'charisma':
+                            racemod2 = rollCharisma + 1;
+                            setCharisma(racemod2);
+                            setCharismamod(sort(racemod2));
+                            break;
+                        case 'intelligence':
+                            racemod2 = rollIntelligence + 1;
+                            setIntelligence(racemod2);
+                            setIntelligencemod(sort(racemod2));
+                            break;
+                        case 'wisdom':
+                            racemod2 = rollWisdom + 1;
+                            setWisdom(racemod2);
+                            setWisdommod(sort(racemod2));
+                            break;
+                        default:
+                                break;
+    }
                 break;
             default:
                 break;
@@ -312,6 +428,7 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value, mod
 
     const rollStats = () => {
         clearStats();
+        ABI();
         const rollStrength = roll();
         const rollDexterity = roll();
         const rollConstitution = roll();
@@ -538,6 +655,16 @@ const setValue = (modifier, value) => {
         return totalhealth;
     }
 
+    function ABI() {
+        var check = document.getElementById("ASI");
+        check.style.display = "none";
+        if (levelValue >= 4 || level2Value >= 4){
+            check.style.display = "block";
+    }
+        else{
+            check.style.display = "none";
+        }
+    }
     return(
         <div>
         <br></br>
@@ -595,6 +722,11 @@ const setValue = (modifier, value) => {
         <option value="wisdom">Wisdom</option>
         <option value="charisma">Charisma</option>
       </select>
+      <div id="ASI">
+        <br></br>
+        <h3>Ability Score Modifier</h3>
+        
+        </div>
         </div>
     )
 }

@@ -9,7 +9,6 @@ function App() {
   const [levels, setLevel] = useState("1");
   const [classes2, setClass2] = useState("none");
   const [levels2, setLevel2] = useState("0");
-  const [modular, setModular] = useState("None");
   return (
     <>
       <div>
@@ -43,16 +42,6 @@ function App() {
         <option value="tiefling">Tiefling</option>
         <option value="triton">Triton</option>
         <option value="warforged">Warforged</option>
-      </select>
-      <label htmlFor="modular">Select Modifier:</label>
-      <select name="modular" id="modular" value={modular} onChange={(e) => setModular(e.target.value)}>
-        <option value="none">None</option>
-        <option value="strength">Strength</option>
-        <option value="dexterity">Dexterity</option>
-        <option value="constitution">Constitution</option>
-        <option value="intelligence">Intelligence</option>
-        <option value="wisdom">Wisdom</option>
-        <option value="charisma">Charisma</option>
       </select>
       <br></br>
       <div>
@@ -138,7 +127,7 @@ function App() {
         <option value="20">20</option>
       </select>
       </div>
-      <Stats raceValue={races} classValue={classes} class2Value={classes2} levelValue={levels} level2Value={levels2} modValue={modular}></Stats>
+      <Stats raceValue={races} classValue={classes} class2Value={classes2} levelValue={levels} level2Value={levels2} ></Stats>
       </div>
     </>
   )
