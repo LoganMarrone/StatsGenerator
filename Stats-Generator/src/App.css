@@ -18,8 +18,9 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 h1{
-  color: white;
-  text-shadow: -5px 5px black;
+  color: black;
+  -webkit-text-stroke: 0.5px white;
+  text-shadow: -3px 0 5px #ffde21;
   vertical-align: top;
 }
 
@@ -31,6 +32,7 @@ label{
 }
 select{
   color: white;
-  text-shadow: 1px 0 5px #ffde21;
-  width: 100px;
+  -webkit-text-stroke: 0.1px black;
+  text-shadow: 2px 0 10px #ffde21;
+  width: 120px;
 }

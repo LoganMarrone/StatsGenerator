@@ -18,6 +18,10 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
         const [chrmod, setCharismamod] = useState(null);
         const [mod1, setMod1] = useState(null);
         const [mod2, setMod2] = useState(null);
+        const [asi, setAsi] = useState("0");
+        const [mod3, setMod3] = useState(strength);
+        const [mod4, setMod4] = useState(strength);
+        const [amount1, setAmount1] = useState("1");
     const clearStats = () => {
         setStrength(null);
         setDexterity(null);
@@ -428,7 +432,6 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
 
     const rollStats = () => {
         clearStats();
-        ABI();
         const rollStrength = roll();
         const rollDexterity = roll();
         const rollConstitution = roll();
@@ -445,6 +448,9 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
         setHealth([rollHealth]);
         raceStats(rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma);
         checkStats(rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma);
+        const lvl = levelValue;
+        const lvl2 = level2Value;
+        ABI(lvl, lvl2);
     }
 
     const checkStats = (rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma) => {
@@ -655,22 +661,205 @@ const setValue = (modifier, value) => {
         return totalhealth;
     }
 
-    function ABI() {
-        var check = document.getElementById("ASI");
-        check.style.display = "none";
-        if (levelValue >= 4 || level2Value >= 4){
-            check.style.display = "block";
-    }
-        else{
-            check.style.display = "none";
+    const ABI = (lvl, lvl2) => {
+        if (lvl >= 4 || lvl2 >= 4){
+            let amount = 0;
+            amount = Math.floor(lvl / 4);
+            let amount2 = 0;
+            amount2 = Math.floor(lvl2 / 4);
+            let totalamount = amount + amount2;
+            setAsi(totalamount);
+            if (totalamount > 0){
+                var show = document.getElementById('ASI');
+                show.style.display = "block";
+            }
+            else{
+                show.style.display = "none";
+            }
+        }
+        }
+
+    const determine = () => {
+        var show = document.getElementById('ASI');
+        var one = document.getElementById('ASI2');
+        var two = document.getElementById('ASI3');
+        let amounts = amount1;
+        if (amounts == 1){
+            show.style.display = "none";
+            one.style.display = "block";
+            two.style.display = "block";
+        }
+        else if (amounts == 2){
+            show.style.display = "none";
+            one.style.display = "block";
         }
     }
+
+    const add = () => {
+        let deplete = asi;
+        deplete = deplete - 1;
+        console.log(deplete);
+        let amounts = amount1;
+        let tempValue = 0;
+        var one = document.getElementById('ASI2');
+        var two = document.getElementById('ASI3');
+        const str = strength;
+        const dex = dexterity;
+        const cst = constitution;
+        const int = intelligence;
+        const wis = wisdom;
+        const chr = charisma;
+        if (amounts == 1){
+            one.style.display = "none";
+            two.style.display = "none";
+            if (mod3 != mod4){
+                switch (mod3) {
+                case 'strength':
+                tempValue = parseInt(str) + 1;
+                setStrength(tempValue);
+                setValue(mod3, tempValue);
+                setStrengthmod(sort(tempValue));
+                break;
+                case 'dexterity':
+            tempValue = parseInt(dex) + 1;
+                setDexterity(tempValue);
+                setValue(mod3, tempValue);
+                setDexteritymod(sort(tempValue));
+            break;
+                case 'constitution':
+            tempValue = parseInt(cst) + 1;
+                setConstitution(tempValue);
+                setValue(mod3, tempValue);
+                setConstitutionmod(sort(tempValue));
+            break;
+                case 'intelligence':
+            tempValue = parseInt(int) + 1;
+                setIntelligence(tempValue);
+                setValue(mod3, tempValue);
+                setIntelligencemod(sort(tempValue));
+            break;
+                case 'wisdom':
+            tempValue = parseInt(wis) + 1;
+                setWisdom(tempValue);
+                setValue(mod3, tempValue);
+                setWisdommod(sort(tempValue));
+            break;
+                case 'charisma':
+            tempValue = parseInt(chr) + 1;
+                setCharisma(tempValue);
+                setValue(mod3, tempValue);
+                setCharismamod(sort(tempValue));
+            break;
+                default:
+            break;
+                }
+            switch (mod4) {
+                case 'strength':
+                tempValue = parseInt(str) + 1;
+                setStrength(tempValue);
+                setValue(mod4, tempValue);
+                setStrengthmod(sort(tempValue));
+                break;
+                case 'dexterity':
+            tempValue = parseInt(dex) + 1;
+                setDexterity(tempValue);
+                setValue(mod4, tempValue);
+                setDexteritymod(sort(tempValue));
+            break;
+                case 'constitution':
+            tempValue = parseInt(cst) + 1;
+                setConstitution(tempValue);
+                setValue(mod4, tempValue);
+                setConstitutionmod(sort(tempValue));
+            break;
+                case 'intelligence':
+            tempValue = parseInt(int) + 1;
+                setIntelligence(tempValue);
+                setValue(mod4, tempValue);
+                setIntelligencemod(sort(tempValue));
+            break;
+                case 'wisdom':
+            tempValue = parseInt(wis) + 1;
+                setWisdom(tempValue);
+                setValue(mod4, tempValue);
+                setWisdommod(sort(tempValue));
+            break;
+                case 'charisma':
+            tempValue = parseInt(chr) + 1;
+                setCharisma(tempValue);
+                setValue(mod4, tempValue);
+                setCharismamod(sort(tempValue));
+            break;
+                default:
+            break;
+                }
+                }
+            else{
+            one.style.display = "block";
+            two.style.display = "block";
+            }
+        }
+        else if (amounts == 2){
+        one.style.display = "none";
+                switch (mod3) {
+                case 'strength':
+                tempValue = parseInt(str) + 2;
+                setStrength(tempValue);
+                setValue(mod3, tempValue);
+                setStrengthmod(sort(tempValue));
+                break;
+                case 'dexterity':
+            tempValue = parseInt(dex) + 2;
+                setDexterity(tempValue);
+                setValue(mod3, tempValue);
+                setDexteritymod(sort(tempValue));
+            break;
+                case 'constitution':
+            tempValue = parseInt(cst) + 2;
+                setConstitution(tempValue);
+                setValue(mod3, tempValue);
+                setConstitutionmod(sort(tempValue));
+            break;
+                case 'intelligence':
+            tempValue = parseInt(int) + 2;
+                setIntelligence(tempValue);
+                setValue(mod3, tempValue);
+                setIntelligencemod(sort(tempValue));
+            break;
+                case 'wisdom':
+            tempValue = parseInt(wis) + 2;
+                setWisdom(tempValue);
+                setValue(mod3, tempValue);
+                setWisdommod(sort(tempValue));
+            break;
+                case 'charisma':
+            tempValue = parseInt(chr) + 2;
+                setCharisma(tempValue);
+                setValue(mod3, tempValue);
+                setCharismamod(sort(tempValue));
+            break;
+                default:
+            break;
+                }
+        }
+        setAsi(deplete);
+        if (deplete != 0){
+            var repeat = document.getElementById('ASI');
+            repeat.style.display = "block";
+        }
+        else {
+            repeat.style.display = "none";
+        }
+
+    }    
+
     return(
-        <div>
+        <div id="body">
         <br></br>
         <button onClick={rollStats}>Roll Stats!</button>
         <table>
             <thead>
+            <tr>
                 <th>Health</th>
                 <th>Strength</th>
                 <th>Dexterity</th>
@@ -678,6 +867,7 @@ const setValue = (modifier, value) => {
                 <th>Intelligence</th>
                 <th>Wisdom</th>
                 <th>Charisma</th>
+                </tr>
             </thead>
             <tbody>
                 <tr>
@@ -724,8 +914,43 @@ const setValue = (modifier, value) => {
       </select>
       <div id="ASI">
         <br></br>
-        <h3>Ability Score Modifier</h3>
-        
+        <h3>Currenty you have {asi} Ability Score Improvements</h3>
+        <div>
+        <button onClick={determine}>Press to select:</button>
+        <label htmlFor="amount1">Select Modifier:</label>
+      <select name="amount1" id="amount1" value={amount1} onChange={(e) => setAmount1(e.target.value)}>
+        <option value="1">+1;+1</option>
+        <option value="2">+2</option>
+      </select>
+      </div>
+        </div>
+        <div id="ASI2">
+        <br></br>
+        <h3>Currenty you have {asi} Ability Score Improvements</h3>
+        <div>
+        <button onClick={add}>Add these Stat(s):</button>
+        <br></br>
+        <label htmlFor="mod3">Select Modifier:</label>
+      <select name="mod3" id="mod3" value={mod3} onChange={(e) => setMod3(e.target.value)}>
+        <option value="strength">Strength</option>
+        <option value="dexterity">Dexterity</option>
+        <option value="constitution">Constitution</option>
+        <option value="intelligence">Intelligence</option>
+        <option value="wisdom">Wisdom</option>
+        <option value="charisma">Charisma</option>
+      </select>
+      <div id="ASI3">
+      <label htmlFor="mod4">Select Modifier:</label>
+      <select name="mod4" id="mod4" value={mod4} onChange={(e) => setMod4(e.target.value)}>
+        <option value="strength">Strength</option>
+        <option value="dexterity">Dexterity</option>
+        <option value="constitution">Constitution</option>
+        <option value="intelligence">Intelligence</option>
+        <option value="wisdom">Wisdom</option>
+        <option value="charisma">Charisma</option>
+      </select>
+      </div>
+      </div>
         </div>
         </div>
     )

@@ -5,14 +5,16 @@ table{
 }
 th{
     border: 1px solid black;
+    text-shadow: 1px 0 5px white;
     padding: 10px;
 }
 td{
     border: 1px solid black;
     padding: 25px;
     font-weight: bold;
-    text-shadow: 0px 0 10px #ffde21;
+    text-shadow: 0px 0 5px #ffde21;
     color: black;
+    -webkit-text-stroke: 0.1px black;
 }
 .blank{
     border: 0px solid;
@@ -21,4 +23,13 @@ p{
     color: red;
     font-weight: bold;
     text-shadow: -2px 2px black;
+}
+#ASI{
+    display: none;
+}
+#ASI2{
+    display: none;
+}
+#ASI3{
+    display: none;
 }
