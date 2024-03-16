@@ -4,23 +4,10 @@
   padding: 2rem;
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 h1{
-  color: black;
-  -webkit-text-stroke: 0.5px white;
-  text-shadow: -3px 0 5px #ffde21;
+  color: #1b1512;
+  -webkit-text-stroke: 0.5px #464243;
+  text-shadow: -3px 0 5px #71818d;
   vertical-align: top;
 }
 
@@ -28,11 +15,11 @@ label{
   align-items: center;
   color: white;
   font-style: bold;
-  text-shadow: 1px 1px black;
+  text-shadow: -1px 1px black;
 }
 select{
-  color: white;
+  color: #a6b9c6;
   -webkit-text-stroke: 0.1px black;
-  text-shadow: 2px 0 10px #ffde21;
+  text-shadow: 2px 0 10px #71818d;
   width: 120px;
 }

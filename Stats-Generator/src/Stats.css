@@ -2,34 +2,26 @@ table{
     border: 1px solid black;
     color: black;
     margin: auto;
+    
 }
 th{
     border: 1px solid black;
     text-shadow: 1px 0 5px white;
     padding: 10px;
+    background-color: #1a1a1a;
 }
 td{
     border: 1px solid black;
     padding: 25px;
     font-weight: bold;
-    text-shadow: 0px 0 5px #ffde21;
-    color: black;
-    -webkit-text-stroke: 0.1px black;
+    text-shadow: 0px 0 5px #a6b9c6;
+    color: #1b1512;
+    -webkit-text-stroke: 0.1px #1b1512;
+    background-color: #222222;
 }
 .blank{
     border: 0px solid;
 }
-p{
-    color: red;
-    font-weight: bold;
-    text-shadow: -2px 2px black;
-}
-#ASI{
-    display: none;
-}
-#ASI2{
-    display: none;
-}
-#ASI3{
+#ASI, #ASI2, #ASI3, #switch, #race1, #race2{
     display: none;
 }
