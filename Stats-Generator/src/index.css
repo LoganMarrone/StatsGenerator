@@ -4,9 +4,9 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #ffde21;
+  color: #1b1512;
   background-color: #242424;
-
+  text-shadow: 4px 0 10px #71818d;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
