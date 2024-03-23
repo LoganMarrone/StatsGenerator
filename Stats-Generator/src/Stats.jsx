@@ -460,10 +460,10 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
         clearStats();
         const rollStrength = roll();
         const rollDexterity = roll();
-        const rollConstitution = 10;
-        const rollIntelligence = 10;
-        const rollWisdom = 10;
-        const rollCharisma = 10;
+        const rollConstitution = roll();
+        const rollIntelligence = roll();
+        const rollWisdom = roll();
+        const rollCharisma = roll();
         const rollHealth = healthroll(rollConstitution);
         setStrength([rollStrength]);
         setDexterity([rollDexterity]);
