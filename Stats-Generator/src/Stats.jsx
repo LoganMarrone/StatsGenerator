@@ -3,6 +3,7 @@ import './Stats.css'
 import { useState } from 'react';
 
 function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
+    // Initialize the states required
     const [strength, setStrength] = useState(null);
         const [dexterity, setDexterity] = useState(null);
         const [constitution, setConstitution] = useState(null);
@@ -25,6 +26,7 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
         const [mod6, setMod6] = useState(strength);
         const [amount1, setAmount1] = useState("1");
     const clearStats = () => {
+        //Removes all values for said states
         setStrength(null);
         setDexterity(null);
         setConstitution(null);
@@ -41,6 +43,7 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
     }
 
     const roll = () => {
+        //This is to determine how high/low a stat is by rolling 6d6 and grabbing the top 3 to use for the roll. It is a standard for Table Top RPGs)
         const rolls = [];
         for (let index = 0; index < 6; index++){
             rolls.push(Math.floor(Math.random() * 6) + 1);
@@ -54,6 +57,7 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
         return total;
     }
     const customrace = (racial, rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma) => {
+        //For this, we have to analyze what the player chose for their race. WIth this, we can modify the stats to add the required modifier
         let racemod1;
         let racemod2;
         let racemod3;
@@ -197,6 +201,7 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
         checkStats(rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma);
     }
     const raceStats = (rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma) => {
+        //Establishes the race, racemodifiers, and does a case to see if it is one where someone has to select custom modifiers.
         const racial = raceValue;
         let racemod1;
         let racemod2;
@@ -419,6 +424,7 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
     }
 
     const sort = (value) => {
+        //This is used to sort and apply the modifier based on the value of the stat given
         let modifier = 0;
         if (value === 1) {
         modifier = "-5";
@@ -457,6 +463,7 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
     }
 
     const rollStats = () => {
+        //as the name implies, it clears, rolls, sets, and check the other values to assess race stats and Ability Score Improvement
         clearStats();
         const rollStrength = roll();
         const rollDexterity = roll();
@@ -480,6 +487,7 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
     }
 
     const checkStats = (rollStrength, rollDexterity, rollConstitution, rollIntelligence, rollWisdom, rollCharisma) => {
+        //This is used as a check to make sure the mods follow the base values
         const detDexterity = sort(rollDexterity);
         const detConstitution = sort(rollConstitution);
         const detIntelligence = sort(rollIntelligence);
@@ -494,7 +502,7 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
     }
 
     const swap = () => {
-    if (mod1 != mod2){
+    if (mod1 != mod2 && mod1 != "null" && mod2 != "null"){
     let tempMod = mod1;
     setMod1(mod2);
     setMod2(tempMod);
@@ -549,6 +557,7 @@ function Stats({raceValue, classValue, levelValue, class2Value, level2Value}){
 }
 
 const getValue = (modifier) => {
+    //Basic getter function
     switch (modifier) {
         case 'strength':
             return strength;
@@ -568,6 +577,7 @@ const getValue = (modifier) => {
 }
 
 const setValue = (modifier, value) => {
+    //Basic setter function along with setting the modifier
     switch (modifier) {
         case 'strength':
             setStrength(value);
@@ -599,6 +609,7 @@ const setValue = (modifier, value) => {
 }
 
     const healthroll = (constitution) => {
+        //Allows for one to select which class and how one would like to 
         const charclass = classValue;
         let max = 0;
         if (charclass == "artificer" || charclass == "bard" || charclass == "cleric" || charclass == "druid" || charclass == "monk" || charclass == "rogue" || charclass == "warlock")
@@ -679,7 +690,7 @@ const setValue = (modifier, value) => {
             max2 = 6;
         }
         const level2 = parseInt(level2Value)
-        if (level2 != 0){
+        if (level2 != 0 && charclass2 != "none"){
         totalhealth += max2 + conmod; //for 1st level
             if (level2 > 1){
             for (let index = 0; index < level2; index++){
@@ -691,6 +702,7 @@ const setValue = (modifier, value) => {
     }
 
     const ABI = (lvl, lvl2) => {
+        //Determines amount of improvements and allows for said improvements before disappearing when they run out
         if (lvl >= 4 || lvl2 >= 4){
             let amount = 0;
             amount = Math.floor(lvl / 4);
@@ -709,6 +721,7 @@ const setValue = (modifier, value) => {
         }
 
     const determine = () => {
+        //This is my little houdini trick where it will appear and disappear the 3 areas that are used for improvements
         var show = document.getElementById('ASI');
         var one = document.getElementById('ASI2');
         var two = document.getElementById('ASI3');
@@ -883,6 +896,7 @@ const setValue = (modifier, value) => {
     }    
 
     const swapper = () => {
+        //This switches for the question showed up
         var yes = document.getElementById('switch');
         yes.style.display = "block";
         var hide = document.getElementById('question');
@@ -962,6 +976,7 @@ const setValue = (modifier, value) => {
         <button onClick={swap}>Swap these Stats:</button>
         <label htmlFor="mod1">Select Modifier 1:</label>
       <select name="mod1" id="mod1" value={mod1} onChange={(e) => setMod1(e.target.value)}>
+        <option value="null">Select</option>
         <option value="strength">Strength</option>
         <option value="dexterity">Dexterity</option>
         <option value="constitution">Constitution</option>
@@ -971,6 +986,7 @@ const setValue = (modifier, value) => {
       </select>
       <label htmlFor="mod2">Select Modifier 2:</label>
       <select name="mod2" id="mod2" value={mod2} onChange={(e) => setMod2(e.target.value)}>
+        <option value="null">Select</option>
         <option value="strength">Strength</option>
         <option value="dexterity">Dexterity</option>
         <option value="constitution">Constitution</option>
